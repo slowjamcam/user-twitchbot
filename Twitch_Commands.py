@@ -157,5 +157,5 @@ commands = {
     "!remove": remove_chatter, # Optional: command to remove a user from seen_chatters
     "!cat": cat,
     "!dog": dog,
-    "!jamSeshScore": jamSeshScore,
+    "!jamseshscore": jamSeshScore,
     }
