@@ -1,27 +1,27 @@
 # from twitchio.ext import commands
 # from twitchio.client import Client
 # import os
-#
+
 # bot = commands.Bot(
 #     client_secret='kgc7tj09p072zp15oycoidu6w9qbd3',
 #     client_id='rfeu37kn23wpu96thm6o7w8nh2yf1g',
 #     bot_id='Slowjam_bot',
 #     owner_id='slowjamcam',
 #     prefix='!',
-#
+
 # )
-#
+
 # client = Client(
 #     client_id='rfeu37kn23wpu96thm6o7w8nh2yf1g',
 #     client_secret='kgc7tj09p072zp15oycoidu6w9qbd3'
 # )
-#
-#
+
+
 # @bot.command(name='hello')
 # async def hello_command(ctx):
 #     await ctx.send("o" + "/" + " HELLO")
-#
-#
+
+
 # if __name__ == '__main__':
 #     bot.run()
 
@@ -29,8 +29,8 @@
 # from twitchio.ext import commands
 # from twitchio.client import Client
 # import os
-#
-#
+
+
 # bot = commands.Bot(
 #     irc_token="kf90givw4gaje9l4zyalagsme2bxbj",
 #     client_id="gp762nuuoqcoxypju8c569th9wz7q5",
@@ -40,26 +40,26 @@
 #     prefix='!',
 #     initial_channels=['incompetent_ian'],
 # )
-#
-#
+
+
 # client = Client(
 #     client_id="rfeu37kn23wpu96thm6o7w8nh2yf1g",
 #     client_secret="fx7slgfl7lgtt78xdy15857nwcucew",
 # )
-#
-#
+
+
 # @bot.event
 # async def event_message(ctx):
 #     print(ctx.author)
 #     print(ctx.content)
 #     await bot.handle_commands(ctx)
-#
-#
+
+
 # @bot.command(name='test')
 # async def test_command(ctx):
 #     await ctx.send("this is a test response")
-#
-#
+
+
 # @bot.command(name='who')
 # async def get_chatters(ctx):
 #     chatters = await client.get_chatters('incompetent_ian')
@@ -71,6 +71,7 @@
 #     bot.run()
 
 import socket
+import time
 from Twitch_Commands import commands, seen_chatters, timeoutUser
 
 # Replace these with your details
@@ -104,6 +105,7 @@ while True:
 
         if resp.startswith('PING'):
             sock.send("PONG :tmi.twitch.tv\r\n".encode('utf-8'))
+            send_message(f"Check out my website: https://cameronhampton.com")  # 👈 Respond to PINGs to stay connected
 
         elif "PRIVMSG" in resp:
             username = resp.split('!', 1)[0][1:]
@@ -132,9 +134,22 @@ while True:
                 elif "bad bot" in message.lower():
                     send_message("😢 I'm trying my best...")
                 elif "you suck" in message.lower():
-                    send_message(timeoutUser(username, 600))
+                    send_message(f"suck on this") and send_message(timeoutUser({username}, 600))
                 elif "man city sucks" in message.lower():
                     send_message(f"/timeout {username} 30")
+                elif "pog" in message.lower():
+                    send_message("PogChamp!")
+                elif "poggers" in message.lower(): 
+                    send_message("PogChamp!")
+                elif "bruh" in message.lower():
+                    send_message("Just bruh.")
+                elif "pogchamp" in message.lower():
+                    send_message("PogChamp!")
+                elif "lmao" in message.lower():
+                    send_message("LMAO")
+                elif "lol" in message.lower():
+                    send_message("LOL")
+
 
 
     except KeyboardInterrupt:

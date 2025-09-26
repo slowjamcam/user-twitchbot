@@ -1,6 +1,8 @@
 # commands.py
 import time
 import random
+import numbers
+import datetime
 from password_gen import generate_password
 from NBAplayers import player_pick, player_pick_name
 
@@ -95,11 +97,46 @@ def lurk(user):
 
 
 def timeoutUser(user, duration=600):
-    return f"/timeout {user} {duration}"
+    return f"timeout {user} {duration}"
 
 
 def password(user):
     return f"your password " + generate_password() + f"shhh... Don't tell anyone. "
+
+
+def website(user):
+    return f"Check out my website: https://cameronhampton.com"
+
+
+def add_chatter(user):
+    seen_chatters.add(user)
+    return f"Welcome to the chat, @{user}!"
+
+
+def remove_chatter(user):
+    seen_chatters.discard(user)
+    return f"Goodbye, @{user}! We'll miss you."
+
+
+def cat(user):
+    return f"🐱"
+
+
+def dog(user):
+    return f"🐶"
+
+def jamSeshScore(user):
+    num = random.randint(1, 1000)
+    choice = random.choice([1, 2])
+    if num == 1000:
+        # Log the user and timestamp
+        with open("jam_sesh_legends.log", "a") as f:
+            f.write(f"{datetime.datetime.now().isoformat()} - {user}\n")
+        return f"{user}, Your Jam Sesh Score is {num}. What a legend!"
+    elif choice == 1:
+        return f"{user}'s Sesh Score is {num}. Poggers!"
+    elif choice == 2:
+        return f"{user}, Your Jam Sesh Score is {num}."
 
 
 # Register all commands here
@@ -115,4 +152,10 @@ commands = {
     "!lurk": lurk,
     "!password": CooldownCommand(password, cooldown_seconds=300),
     "!POTD": GlobalOneTimeCommand(player_of_the_day, 12),
-}
+    "!website": website,
+    "!add": add_chatter,
+    "!remove": remove_chatter, # Optional: command to remove a user from seen_chatters
+    "!cat": cat,
+    "!dog": dog,
+    "!jamSeshScore": jamSeshScore,
+    }
